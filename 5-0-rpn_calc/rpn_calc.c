@@ -6,7 +6,7 @@
 /*   By: spetitcu <spetitcu@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/16 14:59:21 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/20 17:40:31 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/20 18:14:01 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ int checknpiok(char *str)  //inutile a integer dans la recursive
             nbop++;  
     i++;
     }
-    printf("nbdigit : %d, nbop : %d\n", nbdigit, nbop);
+    //printf("nbdigit : %d, nbop : %d\n", nbdigit, nbop);
     if (nbdigit == nbop + 1)
         return (1);
     else 
@@ -62,6 +62,7 @@ void searchop(char *str)
         int j = -1;
         int tmpd1 = 0;
         int tmpd2 = 0;
+        int tmp = 0;
         while (str[++i] && j < 0)
             if (str[i] == '+' || str[i] == '/' || str[i] == '*' || str[i] == '-' ||str[i] == '%')
                 j = i;
@@ -80,7 +81,6 @@ void searchop(char *str)
         tmpd1 = atoi(str + j + 1);
         while (str[j] == ' ')
             j--;
-        
         while (j >= 0 && str[j] != ' ')  
             j--;
         tmpd2 = atoi(str + j + 1);
@@ -90,17 +90,18 @@ void searchop(char *str)
             printf("Error\n");
             return ;
         }
-        printf("%d\n", (tmpd1 = calcul(tmpd1, tmpd2, str[i - 1])));
+        tmp = calcul(tmpd1, tmpd2, str[i - 1]);
+        //printf("-- >%d\n", tmp);
         while (++j < i)
             str[j] = ' ';
-        if (!tmpd1)
+        if (!tmp)
             str[j - 1] = '0';
-        while (tmpd1)
+        while (tmp)
             {
-                str[--j] = tmpd1 % 10 + '0';
-                tmpd1 /= 10;
+                str[--j] = tmp % 10 + '0';
+                tmp /= 10;
             }
-        printf("str :%s\n", str);
+        printf("%s\n", str);
         searchop(str);
     }
 
@@ -118,15 +119,16 @@ int main (int ac, char **av)
     {
         while (av[1][i++])
             len++;
-        printf("len : %d\n", len);
-        //if (checknpiok(av[1]) == 1)
-        //{
+        //printf("len : %d\n", len);
+        if (checknpiok(av[1]) == 1)
+        {
             printf("Lancement du calcul\n");
-        searchop(av[1]);
-        /*else
-            return (write(1, "Error\n", 6));*/
+            searchop(av[1]);
+        }
+        else
+            return (write(1, "Error\n", 6));
     }
-    else 
+    else
         return (write(1, "Error\n", 6));
-    return (0);
+    
 }
