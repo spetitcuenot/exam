@@ -6,7 +6,7 @@
 /*   By: spetitcu <spetitcu@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/16 14:59:21 by spetitcu     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/20 18:14:01 by spetitcu    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/05/06 14:41:34 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int checknpiok(char *str)  //inutile a integer dans la recursive 
+/*int checknpiok(char *str)  //inutile a integer dans la recursive 
 {
     int i;
     int nbop;
@@ -39,7 +39,7 @@ int checknpiok(char *str)  //inutile a integer dans la recursive
         return (1);
     else 
         return (0);
-}
+}*/
 
 
 int calcul(int d1, int d2, char op)
@@ -91,16 +91,16 @@ void searchop(char *str)
             return ;
         }
         tmp = calcul(tmpd1, tmpd2, str[i - 1]);
-        //printf("-- >%d\n", tmp);
+        printf("-- >%d\n", tmp);
         while (++j < i)
             str[j] = ' ';
         if (!tmp)
             str[j - 1] = '0';
         while (tmp)
-            {
-                str[--j] = tmp % 10 + '0';
-                tmp /= 10;
-            }
+        {
+            str[--j] = tmp % 10 + '0';
+            tmp /= 10;
+        }
         printf("%s\n", str);
         searchop(str);
     }
@@ -117,16 +117,16 @@ int main (int ac, char **av)
     len = 0;
     if (ac == 2)
     {
-        while (av[1][i++])
-            len++;
+        //while (av[1][i++])
+        //    len++;
         //printf("len : %d\n", len);
-        if (checknpiok(av[1]) == 1)
-        {
-            printf("Lancement du calcul\n");
+        //if (checknpiok(av[1]) == 1)
+        //{
+            printf("Start calcul \n");
             searchop(av[1]);
-        }
-        else
-            return (write(1, "Error\n", 6));
+        //}
+        //else
+          //  return (write(1, "Error\n", 6));
     }
     else
         return (write(1, "Error\n", 6));
