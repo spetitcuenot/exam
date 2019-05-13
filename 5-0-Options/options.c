@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   options.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: exam <marvin@le-101.fr>                    +:+   +:    +:    +:+     */
+/*   By: spetitcu <spetitcu@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/12 10:05:01 by exam         #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/12 12:53:49 by exam        ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/05/13 13:03:52 by spetitcu    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ int		checkopen (char *str)
 	{
 		if (str[i] >= 'a' && str[i] <='z')
 		{
-			b = 1;
+			b = 1; 
 		}
 		else
 		{
@@ -134,13 +134,12 @@ int		main(int argc, char **argv)
 						b = 0;
 						l = 0;
 					}
-
 				}			
 			}
 		}
 		else
 			write (1, "Invalid Option", 14);
-}
+	}
 	else
 		write (1, "options: abcdefghijklmnopqrstuvwxyz", 35);
 	write(1, "\n", 1);
